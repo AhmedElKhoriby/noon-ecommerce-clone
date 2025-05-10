@@ -1,0 +1,44 @@
+[
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440020",
+    "name": "Samsung",
+    "slug": "samsung",
+    "image": "https://example.com/images/samsung.jpg"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440021",
+    "name": "Apple",
+    "slug": "apple",
+    "image": "https://example.com/images/apple.jpg"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440022",
+    "name": "Nike",
+    "slug": "nike",
+    "image": "https://example.com/images/nike.jpg"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440023",
+    "name": "Adidas",
+    "slug": "adidas",
+    "image": "https://example.com/images/adidas.jpg"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440024",
+    "name": "Sony",
+    "slug": "sony",
+    "image": "https://example.com/images/sony.jpg"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440025",
+    "name": "Dyson",
+    "slug": "dyson",
+    "image": "https://example.com/images/dyson.jpg"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440026",
+    "name": "L'Oréal",
+    "slug": "loreal",
+    "image": "https://example.com/images/loreal.jpg"
+  }
+]

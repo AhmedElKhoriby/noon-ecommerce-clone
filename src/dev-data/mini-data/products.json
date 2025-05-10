@@ -1,0 +1,122 @@
+[
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440030",
+    "name": "Samsung Galaxy S21",
+    "slug": "samsung-galaxy-s21",
+    "description": "Latest Samsung smartphone with advanced features.",
+    "quantity": 100,
+    "price": 799.99,
+    "priceAfterDiscount": 749.99,
+    "colors": ["BLUE", "GREEN"],
+    "imageCover": "https://example.com/images/samsung-galaxy-s21.jpg",
+    "images": [
+      "https://example.com/images/samsung-galaxy-s21-1.jpg",
+      "https://example.com/images/samsung-galaxy-s21-2.jpg"
+    ],
+    "ratingsAverage": 4.5,
+    "ratingsQuantity": 120,
+    "categoryId": "550e8400-e29b-41d4-a716-446655440000",
+    "subcategoryId": "550e8400-e29b-41d4-a716-446655440010",
+    "brandId": "550e8400-e29b-41d4-a716-446655440020"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440031",
+    "name": "MacBook Pro 16",
+    "slug": "macbook-pro-16",
+    "description": "Powerful laptop for professionals.",
+    "quantity": 50,
+    "price": 2399.99,
+    "priceAfterDiscount": 2299.99,
+    "colors": ["SILVER", "SPACE_GRAY"],
+    "imageCover": "https://example.com/images/macbook-pro-16.jpg",
+    "images": [
+      "https://example.com/images/macbook-pro-16-1.jpg",
+      "https://example.com/images/macbook-pro-16-2.jpg"
+    ],
+    "ratingsAverage": 4.8,
+    "ratingsQuantity": 90,
+    "categoryId": "550e8400-e29b-41d4-a716-446655440000",
+    "subcategoryId": "550e8400-e29b-41d4-a716-446655440011",
+    "brandId": "550e8400-e29b-41d4-a716-446655440021"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440032",
+    "name": "Nike Air Max 270",
+    "slug": "nike-air-max-270",
+    "description": "Comfortable and stylish sneakers.",
+    "quantity": 200,
+    "price": 150.0,
+    "priceAfterDiscount": 135.0,
+    "colors": ["BLACK", "WHITE"],
+    "imageCover": "https://example.com/images/nike-air-max-270.jpg",
+    "images": [
+      "https://example.com/images/nike-air-max-270-1.jpg",
+      "https://example.com/images/nike-air-max-270-2.jpg"
+    ],
+    "ratingsAverage": 4.7,
+    "ratingsQuantity": 150,
+    "categoryId": "550e8400-e29b-41d4-a716-446655440001",
+    "subcategoryId": "550e8400-e29b-41d4-a716-446655440012",
+    "brandId": "550e8400-e29b-41d4-a716-446655440022"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440033",
+    "name": "Sony WH-1000XM4",
+    "slug": "sony-wh-1000xm4",
+    "description": "Noise-cancelling headphones with exceptional sound quality.",
+    "quantity": 75,
+    "price": 349.99,
+    "priceAfterDiscount": 329.99,
+    "colors": ["BLACK", "SILVER"],
+    "imageCover": "https://example.com/images/sony-wh-1000xm4.jpg",
+    "images": [
+      "https://example.com/images/sony-wh-1000xm4-1.jpg",
+      "https://example.com/images/sony-wh-1000xm4-2.jpg"
+    ],
+    "ratingsAverage": 4.9,
+    "ratingsQuantity": 200,
+    "categoryId": "550e8400-e29b-41d4-a716-446655440000",
+    "subcategoryId": "550e8400-e29b-41d4-a716-446655440010",
+    "brandId": "550e8400-e29b-41d4-a716-446655440024"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440034",
+    "name": "Dyson V11 Vacuum",
+    "slug": "dyson-v11-vacuum",
+    "description": "Powerful cordless vacuum cleaner.",
+    "quantity": 30,
+    "price": 599.99,
+    "priceAfterDiscount": 549.99,
+    "colors": ["BLUE", "GOLD"],
+    "imageCover": "https://example.com/images/dyson-v11.jpg",
+    "images": [
+      "https://example.com/images/dyson-v11-1.jpg",
+      "https://example.com/images/dyson-v11-2.jpg"
+    ],
+    "ratingsAverage": 4.6,
+    "ratingsQuantity": 80,
+    "categoryId": "550e8400-e29b-41d4-a716-446655440002",
+    "subcategoryId": "550e8400-e29b-41d4-a716-446655440014",
+    "brandId": "550e8400-e29b-41d4-a716-446655440025"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440035",
+    "name": "L'Oréal Revitalift Serum",
+    "slug": "loreal-revitalift-serum",
+    "description": "Anti-aging serum for youthful skin.",
+    "quantity": 150,
+    "price": 29.99,
+    "priceAfterDiscount": 24.99,
+    "colors": [],
+    "imageCover": "https://example.com/images/loreal-revitalift.jpg",
+    "images": [
+      "https://example.com/images/loreal-revitalift-1.jpg",
+      "https://example.com/images/loreal-revitalift-2.jpg"
+    ],
+    "ratingsAverage": 4.4,
+    "ratingsQuantity": 300,
+    "categoryId": "550e8400-e29b-41d4-a716-446655440004",
+    "subcategoryId": "550e8400-e29b-41d4-a716-446655440016",
+    "brandId": "550e8400-e29b-41d4-a716-446655440026"
+  }
+]

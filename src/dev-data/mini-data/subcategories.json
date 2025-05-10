@@ -1,0 +1,44 @@
+[
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440010",
+    "name": "Smartphones",
+    "slug": "smartphones",
+    "categoryId": "550e8400-e29b-41d4-a716-446655440000"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440011",
+    "name": "Laptops",
+    "slug": "laptops",
+    "categoryId": "550e8400-e29b-41d4-a716-446655440000"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440012",
+    "name": "Men's Clothing",
+    "slug": "mens-clothing",
+    "categoryId": "550e8400-e29b-41d4-a716-446655440001"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440013",
+    "name": "Women's Clothing",
+    "slug": "womens-clothing",
+    "categoryId": "550e8400-e29b-41d4-a716-446655440001"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440014",
+    "name": "Kitchen Appliances",
+    "slug": "kitchen-appliances",
+    "categoryId": "550e8400-e29b-41d4-a716-446655440002"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440015",
+    "name": "Fitness Equipment",
+    "slug": "fitness-equipment",
+    "categoryId": "550e8400-e29b-41d4-a716-446655440003"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440016",
+    "name": "Skincare",
+    "slug": "skincare",
+    "categoryId": "550e8400-e29b-41d4-a716-446655440004"
+  }
+]

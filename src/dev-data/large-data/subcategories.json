@@ -1,0 +1,182 @@
+[
+  {
+    "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "name": "Smartphones",
+    "slug": "smartphones",
+    "categoryId": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+  },
+  {
+    "id": "c9bf9e57-1685-4c89-bafb-ff5af830be8a",
+    "name": "Laptops",
+    "slug": "laptops",
+    "categoryId": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+  },
+  {
+    "id": "e4a1c8a0-5b4a-4a7d-9c5b-8f8d8e8f8d8e",
+    "name": "Headphones",
+    "slug": "headphones",
+    "categoryId": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+  },
+  {
+    "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+    "name": "Cameras",
+    "slug": "cameras",
+    "categoryId": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+  },
+  {
+    "id": "b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e",
+    "name": "Men's Clothing",
+    "slug": "mens-clothing",
+    "categoryId": "c9bf9e57-1685-4c89-bafb-ff5af830be8a"
+  },
+  {
+    "id": "c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f",
+    "name": "Women's Clothing",
+    "slug": "womens-clothing",
+    "categoryId": "c9bf9e57-1685-4c89-bafb-ff5af830be8a"
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f8a",
+    "name": "Kids' Clothing",
+    "slug": "kids-clothing",
+    "categoryId": "c9bf9e57-1685-4c89-bafb-ff5af830be8a"
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a9b",
+    "name": "Kitchen Appliances",
+    "slug": "kitchen-appliances",
+    "categoryId": "e4a1c8a0-5b4a-4a7d-9c5b-8f8d8e8f8d8e"
+  },
+  {
+    "id": "f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b0c",
+    "name": "Furniture",
+    "slug": "furniture",
+    "categoryId": "e4a1c8a0-5b4a-4a7d-9c5b-8f8d8e8f8d8e"
+  },
+  {
+    "id": "a7b8c9d0-e1f2-4a3b-4c5d-6e7f8a9b0c1d",
+    "name": "Fitness Equipment",
+    "slug": "fitness-equipment",
+    "categoryId": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d"
+  },
+  {
+    "id": "b8c9d0e1-f2a3-4b4c-5d6e-7f8a9b0c1d2e",
+    "name": "Outdoor Gear",
+    "slug": "outdoor-gear",
+    "categoryId": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d"
+  },
+  {
+    "id": "c9d0e1f2-a3b4-4c5d-6e7f-8a9b0c1d2e3f",
+    "name": "Skincare",
+    "slug": "skincare",
+    "categoryId": "b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e"
+  },
+  {
+    "id": "d0e1f2a3-b4c5-4d6e-7f8a-9b0c1d2e3f4a",
+    "name": "Makeup",
+    "slug": "makeup",
+    "categoryId": "b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e"
+  },
+  {
+    "id": "e1f2a3b4-c5d6-4e7f-8a9b-0c1d2e3f4a5b",
+    "name": "Board Games",
+    "slug": "board-games",
+    "categoryId": "c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f"
+  },
+  {
+    "id": "f2a3b4c5-d6e7-4f8a-9b0c-1d2e3f4a5b6c",
+    "name": "Action Figures",
+    "slug": "action-figures",
+    "categoryId": "c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f"
+  },
+  {
+    "id": "a3b4c5d6-e7f8-4a9b-0c1d-2e3f4a5b6c7d",
+    "name": "Fiction",
+    "slug": "fiction",
+    "categoryId": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f8a"
+  },
+  {
+    "id": "b4c5d6e7-f8a9-4b0c-1d2e-3f4a5b6c7d8e",
+    "name": "Non-Fiction",
+    "slug": "non-fiction",
+    "categoryId": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f8a"
+  },
+  {
+    "id": "c5d6e7f8-a9b0-4c1d-2e3f-4a5b6c7d8e9f",
+    "name": "Yoga Mats",
+    "slug": "yoga-mats",
+    "categoryId": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a9b"
+  },
+  {
+    "id": "d6e7f8a9-b0c1-4d2e-3f4a-5b6c7d8e9f0a",
+    "name": "Car Accessories",
+    "slug": "car-accessories",
+    "categoryId": "f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b0c"
+  },
+  {
+    "id": "e7f8a9b0-c1d2-4e3f-4a5b-6c7d8e9f0a1b",
+    "name": "Gardening Tools",
+    "slug": "gardening-tools",
+    "categoryId": "a7b8c9d0-e1f2-4a3b-4c5d-6e7f8a9b0c1d"
+  },
+  {
+    "id": "f8a9b0c1-d2e3-4f4a-5b6c-7d8e9f0a1b2c",
+    "name": "Pet Food",
+    "slug": "pet-food",
+    "categoryId": "b8c9d0e1-f2a3-4b4c-5d6e-7f8a9b0c1d2e"
+  },
+  {
+    "id": "a9b0c1d2-e3f4-4a5b-6c7d-8e9f0a1b2c3d",
+    "name": "Baby Clothes",
+    "slug": "baby-clothes",
+    "categoryId": "c9d0e1f2-a3b4-4c5d-6e7f-8a9b0c1d2e3f"
+  },
+  {
+    "id": "b0c1d2e3-f4a5-4b6c-7d8e-9f0a1b2c3d4e",
+    "name": "Rings",
+    "slug": "rings",
+    "categoryId": "d0e1f2a3-b4c5-4d6e-7f8a-9b0c1d2e3f4a"
+  },
+  {
+    "id": "c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e5f",
+    "name": "Power Tools",
+    "slug": "power-tools",
+    "categoryId": "e1f2a3b4-c5d6-4e7f-8a9b-0c1d2e3f4a5b"
+  },
+  {
+    "id": "d2e3f4a5-b6c7-4d8e-9f0a-1b2c3d4e5f6a",
+    "name": "Guitars",
+    "slug": "guitars",
+    "categoryId": "f2a3b4c5-d6e7-4f8a-9b0c-1d2e3f4a5b6c"
+  },
+  {
+    "id": "e3f4a5b6-c7d8-4e9f-0a1b-2c3d4e5f6a7b",
+    "name": "Notebooks",
+    "slug": "notebooks",
+    "categoryId": "a3b4c5d6-e7f8-4a9b-0c1d-2e3f4a5b6c7d"
+  },
+  {
+    "id": "f4a5b6c7-d8e9-4f0a-1b2c-3d4e5f6a7b8c",
+    "name": "Snacks",
+    "slug": "snacks",
+    "categoryId": "b4c5d6e7-f8a9-4b0c-1d2e-3f4a5b6c7d8e"
+  },
+  {
+    "id": "a5b6c7d8-e9f0-4a1b-2c3d-4e5f6a7b8c9d",
+    "name": "Sofas",
+    "slug": "sofas",
+    "categoryId": "c5d6e7f8-a9b0-4c1d-2e3f-4a5b6c7d8e9f"
+  },
+  {
+    "id": "b6c7d8e9-f0a1-4b2c-3d4e-5f6a7b8c9d0e",
+    "name": "Painting Supplies",
+    "slug": "painting-supplies",
+    "categoryId": "d6e7f8a9-b0c1-4d2e-3f4a-5b6c7d8e9f0a"
+  },
+  {
+    "id": "c7d8e9f0-a1b2-4c3d-4e5f-6a7b8c9d0e1f",
+    "name": "Luggage",
+    "slug": "luggage",
+    "categoryId": "e7f8a9b0-c1d2-4e3f-4a5b-6c7d8e9f0a1b"
+  }
+]

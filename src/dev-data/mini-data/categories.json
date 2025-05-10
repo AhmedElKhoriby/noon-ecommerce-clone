@@ -1,0 +1,32 @@
+[
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "Electronics",
+    "slug": "electronics",
+    "image": "https://example.com/images/electronics.jpg"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440001",
+    "name": "Clothing",
+    "slug": "clothing",
+    "image": "https://example.com/images/clothing.jpg"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440002",
+    "name": "Home & Kitchen",
+    "slug": "home-kitchen",
+    "image": "https://example.com/images/home-kitchen.jpg"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440003",
+    "name": "Sports & Outdoors",
+    "slug": "sports-outdoors",
+    "image": "https://example.com/images/sports-outdoors.jpg"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440004",
+    "name": "Beauty & Personal Care",
+    "slug": "beauty-personal-care",
+    "image": "https://example.com/images/beauty-personal-care.jpg"
+  }
+]

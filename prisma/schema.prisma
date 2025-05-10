@@ -1,0 +1,220 @@
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // directUrl = env("DIRECT_URL")
+}
+
+model Category {
+  id    String  @id @default(uuid())
+  name  String  @unique
+  slug  String?
+  image String?
+
+  subcategories Subcategory[]
+  products      Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Subcategory {
+  id   String  @id @default(uuid())
+  name String  @unique
+  slug String?
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String
+
+  Product Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Brand {
+  id    String  @id @default(uuid())
+  name  String  @unique
+  slug  String?
+  image String?
+
+  Product Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id                 String   @id @default(uuid())
+  name               String   @unique
+  slug               String?
+  description        String
+  quantity           Int
+  sold               Int?     @default(0)
+  price              Float
+  priceAfterDiscount Float?
+  colors             Color[]  @default([])
+  imageCover         String
+  images             String[] @default([])
+  ratingsAverage     Float?
+  ratingsQuantity    Int?     @default(0)
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String
+
+  subcategory   Subcategory? @relation(fields: [subcategoryId], references: [id])
+  subcategoryId String?
+
+  brand   Brand?  @relation(fields: [brandId], references: [id])
+  brandId String?
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  Review    Review[]
+  User      User?      @relation(fields: [userId], references: [id])
+  userId    String?
+  Wishlist  Wishlist[]
+  CartItem  CartItem[]
+}
+
+model Review {
+  id     String  @id @default(uuid())
+  title  String?
+  rating Int     @default(0)
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, productId]) // Ensure one review per user per product
+}
+
+model Wishlist {
+  id        String  @id @default(uuid())
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, productId])
+}
+
+model Address {
+  id         String  @id @default(uuid())
+  alias      String
+  details    String
+  phone      String
+  city       String  @unique
+  postalCode String?
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Coupon {
+  id       String   @id @default(uuid())
+  name     String   @unique
+  discount Float
+  expire   DateTime
+  active   Boolean  @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Cart {
+  id String @id @default(uuid())
+
+  totalCartPrice          Float  @default(0)
+  totalPriceAfterDiscount Float? @default(0)
+  quantity                Int    @default(1)
+
+  user     User       @relation(fields: [userId], references: [id])
+  userId   String     @unique
+  CartItem CartItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CartItem {
+  id String @id @default(uuid())
+
+  quantity Int   @default(1)
+  color    Color
+  price    Float
+
+  cart      Cart    @relation(fields: [cartId], references: [id])
+  cartId    String
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([cartId, productId, color]) // Ensure one cart item per product and color
+}
+
+model User {
+  id         String  @id @default(uuid())
+  name       String
+  slug       String?
+  email      String  @unique
+  phone      String?
+  profileImg String?
+  role       Role    @default(USER)
+  active     Boolean @default(true)
+
+  password              String
+  passwordChangedAt     DateTime?
+  passwordResetCode     String?
+  passwordResetExpires  DateTime?
+  passwordResetVerified Boolean?  @default(false)
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  Review    Review[]
+  Address   Address[]
+  Product   Product[]
+  Wishlist  Wishlist[]
+  cart      Cart?
+}
+
+enum Role {
+  USER
+  ADMIN
+  MANAGER
+}
+
+enum Color {
+  BLUE
+  GREEN
+  SILVER
+  SPACE_GRAY
+  BLACK
+  WHITE
+  GOLD
+}
+
+// 1) npx prisma migrate dev --name init
+// 2) npx prisma generate
+// 3) npx prisma studio
