@@ -6,6 +6,8 @@ const payload = {
       .min(2, 'Category name must be at least 2 characters long.')
       .max(32, 'Category name must be at most 32 characters long.'),
     image: string().optional(),
+    imageCloudId: string().optional(),
+    imageLocalPath: string().optional(),
   }).strict(),
 };
 

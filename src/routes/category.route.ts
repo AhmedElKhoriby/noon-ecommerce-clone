@@ -6,8 +6,6 @@ import validate from '../middlewares/validation.middleware';
 
 const categoryRouter = Router();
 
-// Routes
-
 // Public Routes
 categoryRouter.get('/', validate(categorySchemas.getCategoriesSchema), categoryControllers.getCategories);
 categoryRouter.get('/:id', validate(categorySchemas.getCategorySchema), categoryControllers.getCategory);
@@ -30,6 +28,8 @@ categoryRouter
   .route('/:id')
   .patch(
     auth.allowedTo('ADMIN', 'MANAGER'),
+    categoryControllers.uploadCategoryImage,
+    categoryControllers.resizeImage,
     validate(categorySchemas.updateCategorySchema),
     categoryControllers.updateCategory
   )

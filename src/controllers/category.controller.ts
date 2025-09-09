@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
-import { v4 as uuidv4 } from 'uuid';
-import sharp from 'sharp';
-import { catchAsync } from './../utils/catchAsync';
+import { catchAsync } from '../utils/catchAsync';
+import { processCategoryImage, deleteImage, cleanupFailedUpload } from '../services/imageProcessing.service';
+import { uploadSingleImage } from '../middlewares/upload.middleware';
 import * as categoryService from '../services/category.service';
-
+import AppError from '../errors/appError';
 import {
   IGetCategoriesRequest,
   IGetCategoryRequest,
@@ -11,136 +11,156 @@ import {
   IUpdateCategoryRequest,
   IDeleteCategoryRequest,
 } from '../types/category.request.type';
-import AppError from '../errors/appError';
 
-import multer from 'multer';
-import path from 'path';
-import { uploadSingleImage } from '../middlewares/uploadImage.middleware';
-/**
-
-{
-  fieldname: 'image',
-  originalname: 'photo_2022-09-22_10-44-43.jpg',
-  encoding: '7bit',
-  mimetype: 'image/jpeg',
-  destination: 'src/uploads/products',
-  filename: 'f9d7e17193f526e40d00d88a81e63884',
-  path: 'src\\uploads\\products\\f9d7e17193f526e40d00d88a81e63884',
-  size: 80080
-}
-
- */
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, 'uploads/categories');
-//   },
-//   filename: function (req, file, cb) {
-//     const ext = file.mimetype.split('/')[1];
-//     cb(null, `category-${uuidv4()}${Date.now()}.${ext}`);
-//   },
-// });
-
+// Upload middleware
 export const uploadCategoryImage = uploadSingleImage('image');
 
-export const resizeImage = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-  if (!req.file) {
-    return next(AppError.custom(400, 'Please upload an image'));
+// Image processing middleware
+export const resizeImage = catchAsync(async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  if (!req.file && req.method === 'PATCH') {
+    return next();
   }
 
-  const filename = `category-${uuidv4()}${Date.now()}.jpeg`;
-  const outputPath = `uploads/categories/${filename}`;
+  if (!req.file) {
+    throw AppError.custom(400, 'No image file found in request, please upload an image');
+  }
 
-  await sharp(req.file.buffer).toFormat('jpeg').jpeg({ quality: 90 }).toFile(outputPath);
+  const result = await processCategoryImage(req.file.buffer);
 
-  req.body.image = filename;
+  req.body.image = result.cloudUrl || result.filename;
+  req.body.imageCloudId = result.cloudPublicId;
+  req.body.imageLocalPath = result.localPath;
 
   next();
 });
 
 /**
- *   @method GET
- *   @route ~/api/v1/categories
- *   @desc Get list of categories
- *   @access public
+ * @desc    Get all categories
+ * @route   GET /api/v1/categories
+ * @access  Public
  */
-export const getCategories = catchAsync(
-  async (req: IGetCategoriesRequest, res: Response, next: NextFunction): Promise<void> => {
-    const page = req.query.page ?? 1;
-    const limit = req.query.limit ?? 10;
-    const skip = (page - 1) * limit;
+export const getCategories = catchAsync(async (req: IGetCategoriesRequest, res: Response): Promise<void> => {
+  const page = req.query.page ?? 1;
+  const limit = req.query.limit ?? 10;
+  const skip = (page - 1) * limit;
 
-    const categories = await categoryService.getCategories(limit, skip);
+  const categories = await categoryService.getCategories(limit, skip);
+
+  res.status(200).json({
+    status: 'success',
+    results: categories.length,
+    data: { categories },
+  });
+});
+
+/**
+ * @desc    Get single category
+ * @route   GET /api/v1/categories/:id
+ * @access  Public
+ */
+export const getCategory = catchAsync(async (req: IGetCategoryRequest, res: Response): Promise<void> => {
+  const { id } = req.params;
+
+  const category = await categoryService.getCategory(id);
+  if (!category) {
+    throw AppError.custom(404, `No category found with id: ${id}`);
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: { category },
+  });
+});
+
+/**
+ * @desc    Create new category
+ * @route   POST /api/v1/categories
+ * @access  Private/Admin
+ */
+export const createCategory = catchAsync(async (req: ICreateCategoryRequest, res: Response): Promise<void> => {
+  const categoryData = req.body;
+  const imageCloudId = req.body.imageCloudId;
+  const imageLocalPath = req.body.imageLocalPath;
+
+  try {
+    const newCategory = await categoryService.createCategory(categoryData);
+
+    res.status(201).json({
+      status: 'success',
+      data: { category: newCategory },
+    });
+  } catch (error) {
+    // Cleanup images if database operation failed
+    if (imageCloudId || imageLocalPath) {
+      cleanupFailedUpload(imageCloudId, imageLocalPath);
+    }
+    throw error; // Re-throw to be handled by catchAsync
+  }
+});
+
+/**
+ * @desc    Update category
+ * @route   PATCH /api/v1/categories/:id
+ * @access  Private/Admin
+ */
+export const updateCategory = catchAsync(async (req: IUpdateCategoryRequest, res: Response): Promise<void> => {
+  const { id } = req.params;
+  const updateData = req.body;
+  const newImageCloudId = req.body.imageCloudId;
+  const newImageLocalPath = req.body.imageLocalPath;
+
+  try {
+    // Get existing category first
+    const existingCategory = await categoryService.getCategory(id);
+    if (!existingCategory) {
+      throw AppError.custom(404, `No category found with id: ${id}`);
+    }
+
+    const updatedCategory = await categoryService.updateCategory(id, updateData);
+
+    // Delete old image if new one was uploaded successfully
+    if (req.file && newImageCloudId && existingCategory.imageCloudId) {
+      // Delete old image asynchronously (don't wait)
+      deleteImage(existingCategory.imageCloudId).catch((error) => {
+        console.error('Failed to delete old category image:', error);
+      });
+    }
 
     res.status(200).json({
       status: 'success',
-      results: categories.length,
-      data: { categories },
+      data: { category: updatedCategory },
+    });
+  } catch (error) {
+    // Cleanup new image if database operation failed
+    if (req.file && (newImageCloudId || newImageLocalPath)) {
+      cleanupFailedUpload(newImageCloudId, newImageLocalPath);
+    }
+    throw error; // Re-throw to be handled by catchAsync
+  }
+});
+
+/**
+ * @desc    Delete category
+ * @route   DELETE /api/v1/categories/:id
+ * @access  Private/Admin
+ */
+export const deleteCategory = catchAsync(async (req: IDeleteCategoryRequest, res: Response): Promise<void> => {
+  const { id } = req.params;
+
+  // Get category first to access image data
+  const category = await categoryService.getCategory(id);
+  if (!category) {
+    throw AppError.custom(404, `No category found with id: ${id}`);
+  }
+
+  await categoryService.deleteCategory(id);
+
+  // Delete associated image asynchronously (don't wait for response)
+  if (category.imageCloudId) {
+    deleteImage(category.imageCloudId).catch((error) => {
+      console.error('Failed to delete category image:', error);
     });
   }
-);
 
-/**
- *   @method GET
- *   @route ~/api/v1/categories/:id
- *   @desc Get Specific Category By id
- *   @access public
- */
-export const getCategory = catchAsync(
-  async (req: IGetCategoryRequest, res: Response, next: NextFunction): Promise<void> => {
-    const { id } = req.params;
-
-    const category = await categoryService.getCategory(id);
-    if (!category) return next(AppError.custom(404, `No category for this id: ${id}`));
-
-    res.status(200).json({ status: 'success', data: category });
-  }
-);
-
-/**
- *   @method POST
- *   @route ~/api/v1/categories
- *   @desc Create New Category
- *   @access private
- */
-export const createCategory = catchAsync(
-  async (req: ICreateCategoryRequest, res: Response, next: NextFunction): Promise<void> => {
-    const category = req.body;
-
-    const newCategory = await categoryService.createCategory(category);
-
-    res.status(201).json({ status: 'success', data: newCategory });
-  }
-);
-
-/**
- *   @method PATCH
- *   @route ~/api/v1/categories/:id
- *   @desc Update specific category
- *   @access private
- */
-export const updateCategory = catchAsync(
-  async (req: IUpdateCategoryRequest, res: Response, next: NextFunction): Promise<void> => {
-    const { id } = req.params;
-    const newCategory = req.body;
-
-    const updatedCategory = await categoryService.updateCategory(id, newCategory);
-
-    res.status(200).json({ status: 'success', data: updatedCategory });
-  }
-);
-
-/**
- *   @method DELETE
- *   @route ~/api/v1/categories/:id
- *   @desc Delete specific category
- *   @access private
- */
-export const deleteCategory = catchAsync(
-  async (req: IDeleteCategoryRequest, res: Response, next: NextFunction): Promise<void> => {
-    const { id } = req.params;
-
-    await categoryService.deleteCategory(id);
-
-    res.status(204).send();
-  }
-);
+  res.status(204).send();
+});

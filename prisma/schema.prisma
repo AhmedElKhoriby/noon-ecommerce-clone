@@ -18,7 +18,10 @@ model Category {
   id    String  @id @default(uuid())
   name  String  @unique
   slug  String?
+  
   image String?
+  imageCloudId String?
+  imageLocalPath String?
 
   subcategories Subcategory[]
   products      Product[]
